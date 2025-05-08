@@ -1,0 +1,42 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  email    String   @unique
+  bookings Booking[]
+  orders   Order[]
+}
+
+model Booking {
+  id                Int      @id @default(autoincrement())
+  booking_date      DateTime
+  booking_time      DateTime
+  seating_capacity  Int
+  status            String
+  user_id           Int
+  user              User     @relation(fields: [user_id], references: [id])
+}
+
+model Order {
+  id              Int       @id @default(autoincrement())
+  user_id         Int
+  user            User      @relation(fields: [user_id], references: [id])
+  customer_name   String
+  phone_number    String?   // ← make optional
+  food_items      String?   // ← make optional
+  quantity        Int?      // ← make optional
+  additional_note String?
+  order_date      DateTime  @default(now())
+  address         String
+  message         String
+}
