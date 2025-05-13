@@ -60,6 +60,9 @@ export const createBooking = async (req, res) => {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
             return res.status(400).json({ message: "Database error: " + error.message });
         }
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            return res.status(401).json({ message: "Unauthorized: " + error.message });
+        }
         res.status(500).json({ message: "Internal server error" });
     }
 };

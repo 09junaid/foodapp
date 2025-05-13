@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import prisma from "../config/db.js";
 import { Prisma } from "@prisma/client";
 
-
-
 // ✅ CREATE BOOKING
 export const createBooking = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -71,6 +69,9 @@ export const createBooking = async (req: Request, res: Response): Promise<any> =
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return res.status(400).json({ message: "Database error: " + error.message });
+    }
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      return res.status(401).json({ message: "Unauthorized: " + error.message });
     }
 
     res.status(500).json({ message: "Internal server error" });
