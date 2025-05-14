@@ -11,6 +11,7 @@ import { protect } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
 router.post("/create-booking",protect, createBooking);
+router.get("/get-all-booking",protect, getAllBookings);
 router.get("/get-booking-by/:id",protect, getBookingById);
 router.put("/update-booking/:id",protect, updateBooking);
 router.delete("/delete-booking/:id",protect, deleteBooking);
