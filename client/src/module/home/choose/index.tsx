@@ -35,22 +35,22 @@ const foodList = [
 export default function ChoosingSection() {
   return (
     <section className="py-12 px-4 bg-white">
-      <div className="flex flex-col justify-center items-center gap-10 text-center">
+      <div className="flex w-auto flex-col justify-center items-center gap-2 sm:gap-10 text-center">
         {/* Header */}
         <div className="flex flex-col gap-3 mb-8 max-w-2xl">
           <p className="text-[16px] md:text-[18px] text-[#8EC63F] font-semibold">
             TASTY & CRUNCHY
           </p>
-          <h1 className="text-2xl sm:text-4xl md:text-[64px] font-bold leading-tight">
+          <h1 className="text-4xl sm:text-4xl md:text-[64px] font-bold leading-tight">
             Choose & Enjoy
           </h1>
-          <p className="text-gray-600 text-sm lg:mt-2 sm:text-base">
+          <p className="text-gray-600 text-[14px] lg:mt-2 sm:text-[14px]">
             Inspired by recipes and creations of world’s best chefs
           </p>
         </div>
 
         {/* Food Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 w-full max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-16 w-full lg:w-[56vw] max-w-7xl">
           {foodList.map((item, index) => (
             <div
               key={index}
@@ -62,11 +62,11 @@ export default function ChoosingSection() {
                 className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[150px] lg:h-[150px]"
               />
 
-              <div className="max-w-[170px] md:max-w-[180px] lg:max-w-[190px] w-full flex flex-col items-center sm:items-start text-center md:text-left">
-                <h3 className="font-semibold text-base sm:text-lg">
+              <div className="max-w-[170px] md:max-w-[180px] lg:max-w-[190px] w-full flex flex-col items-center sm:items-start text-left md:text-left">
+                <h3 className="font-semibold text-[16px]">
                   {item.title}
                 </h3>
-                <p className="text-sm sm:text-[15px] text-justify text-gray-600 mt-1 w-[150px] md:w-full">
+                <p className="text-[14px]  text-gray-600 mt-1 w-[151px]">
                   {item.description}
                 </p>
               </div>

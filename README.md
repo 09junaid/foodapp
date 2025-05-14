@@ -60,7 +60,10 @@ npm run build
 ```bash
 http://localhost:5000
 ```
-
+### Swagger will run on:
+```bash
+http://localhost:5000/api-docs
+```
 
 
 

@@ -83,16 +83,16 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center font-[Arial] bg-cover bg-center bg-no-repeat"
+      className="relative sm:w-full min-h-screen flex items-center justify-center font-[Arial] bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${hero.src})` }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30 z-0" />
 
       {/* Content Container */}
-      <div className="relative z-10 container mt-20 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-4 py-20 sm:py-32">
+      <div className="relative z-10 container mt-20 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-14 py-20 sm:py-32">
         {/* Left Side */}
-        <div className="w-full lg:w-1/2 text-start sm:text-center lg:text-left space-y-6 md:space-y-8">
+        <div className="w-full lg:w-1/2 mt-3 text-start sm:text-center  lg:text-left space-y-6 md:space-y-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[96px] font-bold text-white leading-tight">
             <span className="text-[#8EC63F] border-b-4 border-[#8EC63F] pb-1 inline-block">
               Go
@@ -114,22 +114,22 @@ export default function HeroSection() {
         </div>
 
         {/* Right Side - Booking Form */}
-        <div className="w-full lg:w-1/3 xl:lg:w-1/4 max-w-md px-2 sm:px-0 mt-8 lg:mt-0">
-          <div className="bg-black/50 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#8EC63F]">
-            <div className="flex flex-col lg:py-2 justify-center gap-6">
+        <div className="w-[300px] h-[233px] sm:h-full sm:w-[260px] lg:w-1/3 xl:lg:w-[260px] sm:h-[315px] max-w-md  sm:px-0 mt-8 lg:mt-0">
+          <div className="bg-[#0000001A]/40 backdrop-blur-lg p-5 sm:p-6 rounded-[7.4px] sm:rounded-2xl border border-[#8EC63F]">
+            <div className="flex flex-col lg:py-2 justify-center gap-4 sm:gap-6">
               <div className="flex justify-center items-center gap-4">
                 <Image
                   src={group}
                   alt="group"
                   width={56}
                   height={56}
-                  className="w-12 h-12 sm:w-14 sm:h-14"
+                  className="w-[36.984127044677734px] h-[36.984127044677734px] h-12 sm:w-[50px] sm:h-[50px]"
                 />
                 <div>
-                  <p className="text-white text-lg sm:text-xl font-bold">
+                  <p className="text-white text-[11.1px] sm:text-[15px] font-bold">
                     Book a Table
                   </p>
-                  <p className="text-[#797979] text-sm sm:text-base">
+                  <p className="text-[#797979] text-[8.88px] sm:text-[12px]">
                     Powered by opentable
                   </p>
                 </div>
@@ -137,7 +137,7 @@ export default function HeroSection() {
 
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-4"
+                className="flex flex-col gap-3 sm:gap-4 w-[264px] sm:w-[213px]"
               >
                 {/* Booking Date */}
                 <div className="flex flex-col gap-1">
@@ -147,7 +147,7 @@ export default function HeroSection() {
                       required: "Booking date is required",
                     })}
                     aria-invalid={errors.booking_date ? "true" : "false"}
-                    className={`w-full h-12 bg-white/10 text-white px-4 rounded-full border ${
+                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px] px-4 rounded-full border ${
                       errors.booking_date ? "border-red-500" : "border-white/30"
                     } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
                   />
@@ -166,7 +166,7 @@ export default function HeroSection() {
                       required: "Booking time is required",
                     })}
                     aria-invalid={errors.booking_time ? "true" : "false"}
-                    className={`w-full h-12 bg-white/10 text-white px-4 rounded-full border ${
+                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px] px-4 rounded-full border ${
                       errors.booking_time ? "border-red-500" : "border-white/30"
                     } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
                   />
@@ -190,7 +190,7 @@ export default function HeroSection() {
                     })}
                     aria-invalid={errors.seating_capacity ? "true" : "false"}
                     placeholder="How many people?"
-                    className={`w-full h-12 bg-white/10 text-white px-4 rounded-full border ${
+                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px]  px-4 rounded-full border ${
                       errors.seating_capacity
                         ? "border-red-500"
                         : "border-white/30"
@@ -205,7 +205,7 @@ export default function HeroSection() {
 
                 <button
                   type="submit"
-                  className="w-full h-12 cursor-pointer text-white bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
+                  className="w-full h-[28px] sm:w-full sm:h-[37px] cursor-pointer text-white text-[14px] bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
                 >
                   {loading ? "Booking..." : "Find a Table"}
                 </button>

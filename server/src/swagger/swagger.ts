@@ -1,26 +1,11 @@
-import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Application } from "express";
-
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Restaurant API",
-      version: "1.0.0",
-      description: "Fast food restaurant backend API",
-    },
-    servers: [
-      {
-        url: "http://localhost:5000",
-      },
-    ],
-  },
-  apis: ["./src/router/*.ts"], 
-};
-
-const swaggerSpec = swaggerJsdoc(options);
+import fs from "fs";
+import path from "path";
 
 export function setupSwagger(app: Application) {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  const swaggerJsonPath = path.join(process.cwd(), "swagger.json");
+  const swaggerDocument = JSON.parse(fs.readFileSync(swaggerJsonPath, "utf8"));
+
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }

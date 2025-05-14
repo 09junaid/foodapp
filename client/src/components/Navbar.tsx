@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiOutlineMenuAlt2, HiX } from "react-icons/hi";
+
 import Image from "next/image";
 import logo from "/public/images/logo.svg";
 import Link from "next/link";
@@ -30,30 +31,30 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 z-50 w-full font-[Arial]">
-        <div className="bg-[#8EC63F] flex items-center justify-between w-full h-[18vh] px-4 sm:px-6 md:px-8 lg:px-10 xl:mx-auto xl:max-w-[70vw] xl:rounded-b-[20px]">
+        <div className="bg-[#8EC63F] flex items-center justify-between w-full h-[70px] sm:h-[70px] xl:h-[120px] px-4 sm:px-6 md:px-8 lg:px-10 xl:mx-auto xl:max-w-[70vw] xl:rounded-b-[20px]">
           {/* Logo + Hamburger */}
           <div className="flex items-center gap-4">
             <div className="xl:hidden text-white text-3xl cursor-pointer" onClick={() => setIsOpen(true)}>
-              <HiMenuAlt3 />
+              <HiOutlineMenuAlt2 className=" w-[25px] h-[25px]"/>
             </div>
 
             <div className="hidden xl:flex">
-              <Image src={logo} alt="logo" width={150} height={60} />
+              <Image src={logo} alt="logo" className=" w-[166px] h-[54px]" />
             </div>
           </div>
 
           {/* Mobile Login/Logout Button */}
-          <div className="xl:hidden">
+          <div className="xl:hidden text-[12px]">
             {isAuthenticated ? (
               <button
                 onClick={handleLogout}
-                className="text-[#8EC63F] cursor-pointer bg-white w-[87px] h-[45px] rounded-[20px]"
+                className="text-[#8EC63F] cursor-pointer bg-white w-[65px] h-[33px] rounded-[20px]"
               >
                 Logout
               </button>
             ) : (
               <Link href="/login">
-                <button className="text-[#8EC63F] cursor-pointer  bg-white w-[87px] h-[45px] rounded-[20px]">
+                <button className="text-[#8EC63F] cursor-pointer  bg-white w-[65px] h-[33px] rounded-[20px]">
                   Login
                 </button>
               </Link>
@@ -66,19 +67,19 @@ export default function Navbar() {
               <Link key={index} href={"/"} className="relative py-12 group">
                 <span className="relative z-10">{text}</span>
                 <span
-                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[6px] bg-[#F8FD00] rounded-full transition-all duration-300 ${
-                    index === 0 ? "w-full" : "w-0 group-hover:w-full"
+                  className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-[6px] bg-[#F8FD00] rounded-full transition-all duration-300 ${
+                    index === 0 ? "w-[67.5px]" : "w-0 group-hover:w-[67.5px]"
                   }`}
                 ></span>
               </Link>
             ))}
 
             {/* Desktop Login/Logout Button */}
-            <div className="hidden xl:block">
+            <div className="hidden xl:block text-[16px]">
               {isAuthenticated ? (
                 <button
                   onClick={handleLogout}
-                  className="text-[#8EC63F] cursor-pointer  bg-white w-[88px] h-[45px] cursor-pointer rounded-[20px]"
+                  className="text-[#8EC63F] cursor-pointer  bg-white w-[87px] h-[45px] cursor-pointer rounded-[20px]"
                 >
                   Logout
                 </button>
@@ -103,7 +104,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center mb-10">
           <Image src={logo} alt="logo" width={100} height={40} />
           <HiX
-            className="text-white text-3xl cursor-pointer hover:text-gray-200 transition-colors"
+            className="text-white  w-[25px] h-[25px] text-3xl cursor-pointer hover:text-gray-200 transition-colors"
             onClick={() => setIsOpen(false)}
           />
         </div>
