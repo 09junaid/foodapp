@@ -1,12 +1,12 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { HiOutlineMenuAlt2, HiX } from "react-icons/hi";
 
 import Image from "next/image";
 import logo from "/public/images/logo.svg";
 import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { getUser, logout } from "@/modules/auth/authSlice";
+import {logout } from "@/modules/auth/authSlice";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -16,11 +16,6 @@ export default function Navbar() {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
-
-  // ✅ Sync user from cookies on reload
-  // useEffect(() => {
-  //   dispatch(getUser() as any);
-  // }, [dispatch]);
 
   // ✅ Logout handler
   const handleLogout = () => {
@@ -79,7 +74,7 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <button
                   onClick={handleLogout}
-                  className="text-[#8EC63F] cursor-pointer  bg-white w-[87px] h-[45px] cursor-pointer rounded-[20px]"
+                  className="text-[#8EC63F] cursor-pointer bg-white w-[87px] h-[45px] cursor-pointer rounded-[20px]"
                 >
                   Logout
                 </button>

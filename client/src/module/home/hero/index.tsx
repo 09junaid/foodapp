@@ -114,105 +114,109 @@ export default function HeroSection() {
         </div>
 
         {/* Right Side - Booking Form */}
-        <div className="w-[300px] h-[233px] sm:h-full sm:w-[260px] lg:w-1/3 xl:lg:w-[260px] sm:h-[315px] max-w-md  sm:px-0 mt-8 lg:mt-0">
-          <div className="bg-[#0000001A]/40 backdrop-blur-lg p-5 sm:p-6 rounded-[7.4px] sm:rounded-2xl border border-[#8EC63F]">
-            <div className="flex flex-col lg:py-2 justify-center gap-4 sm:gap-6">
-              <div className="flex justify-center items-center gap-4">
-                <Image
-                  src={group}
-                  alt="group"
-                  width={56}
-                  height={56}
-                  className="w-[36.984127044677734px] h-[36.984127044677734px] h-12 sm:w-[50px] sm:h-[50px]"
-                />
-                <div>
-                  <p className="text-white text-[11.1px] sm:text-[15px] font-bold">
-                    Book a Table
-                  </p>
-                  <p className="text-[#797979] text-[8.88px] sm:text-[12px]">
-                    Powered by opentable
-                  </p>
-                </div>
-              </div>
-
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-3 sm:gap-4 w-[264px] sm:w-[213px]"
-              >
-                {/* Booking Date */}
-                <div className="flex flex-col gap-1">
-                  <input
-                    type="date"
-                    {...register("booking_date", {
-                      required: "Booking date is required",
-                    })}
-                    aria-invalid={errors.booking_date ? "true" : "false"}
-                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px] px-4 rounded-full border ${
-                      errors.booking_date ? "border-red-500" : "border-white/30"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
-                  />
-                  {errors.booking_date && (
-                    <span className="text-sm text-red-500">
-                      {errors.booking_date.message}
-                    </span>
-                  )}
-                </div>
-
-                {/* Booking Time */}
-                <div className="flex flex-col gap-1">
-                  <input
-                    type="time"
-                    {...register("booking_time", {
-                      required: "Booking time is required",
-                    })}
-                    aria-invalid={errors.booking_time ? "true" : "false"}
-                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px] px-4 rounded-full border ${
-                      errors.booking_time ? "border-red-500" : "border-white/30"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
-                  />
-                  {errors.booking_time && (
-                    <span className="text-sm text-red-500">
-                      {errors.booking_time.message}
-                    </span>
-                  )}
-                </div>
-
-                {/* Seating Capacity */}
-                <div className="flex flex-col gap-1">
-                  <input
-                    type="number"
-                    min="1"
-                    max="20"
-                    {...register("seating_capacity", {
-                      required: "Seating capacity is required",
-                      min: { value: 1, message: "Minimum 1 person required" },
-                      max: { value: 20, message: "Maximum 20 people allowed" },
-                    })}
-                    aria-invalid={errors.seating_capacity ? "true" : "false"}
-                    placeholder="How many people?"
-                    className={`w-full h-[28px] sm:w-full sm:h-[37px] bg-white/10 text-white text-[14px]  px-4 rounded-full border ${
-                      errors.seating_capacity
-                        ? "border-red-500"
-                        : "border-white/30"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
-                  />
-                  {errors.seating_capacity && (
-                    <span className="text-sm text-red-500">
-                      {errors.seating_capacity.message}
-                    </span>
-                  )}
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full h-[28px] sm:w-full sm:h-[37px] cursor-pointer text-white text-[14px] bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
-                >
-                  {loading ? "Booking..." : "Find a Table"}
-                </button>
-              </form>
-            </div>
-          </div>
+        <div className="w-full max-w-md sm:max-w-[260px] lg:max-w-xs xl:max-w-[260px] sm:px-0 mt-8 lg:mt-0">
+  <div className="bg-[#0000001A]/40 backdrop-blur-lg p-5 sm:p-6 rounded-[7.4px] sm:rounded-2xl border border-[#8EC63F]">
+    <div className="flex flex-col lg:py-2 justify-center gap-4 sm:gap-6">
+      {/* Header Section */}
+      <div className="flex justify-center items-center gap-4">
+        <Image
+          src={group}
+          alt="group"
+          width={56}
+          height={56}
+          className="w-9 h-9 sm:w-[50px] sm:h-[50px]"
+        />
+        <div>
+          <p className="text-white text-xs sm:text-sm font-bold">
+            Book a Table
+          </p>
+          <p className="text-[#797979] text-[10px] sm:text-[12px]">
+            Powered by opentable
+          </p>
         </div>
+      </div>
+
+      {/* Form Section */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 sm:gap-4 w-full"
+      >
+        {/* Booking Date */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="date"
+            {...register("booking_date", {
+              required: "Booking date is required",
+            })}
+            aria-invalid={errors.booking_date ? "true" : "false"}
+            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+              errors.booking_date ? "border-red-500" : "border-white/30"
+            } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
+          />
+          {errors.booking_date && (
+            <span className="text-sm text-red-500">
+              {errors.booking_date.message}
+            </span>
+          )}
+        </div>
+
+        {/* Booking Time */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="time"
+            {...register("booking_time", {
+              required: "Booking time is required",
+            })}
+            aria-invalid={errors.booking_time ? "true" : "false"}
+            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+              errors.booking_time ? "border-red-500" : "border-white/30"
+            } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
+          />
+          {errors.booking_time && (
+            <span className="text-sm text-red-500">
+              {errors.booking_time.message}
+            </span>
+          )}
+        </div>
+
+        {/* Seating Capacity */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="number"
+            min="1"
+            max="20"
+            {...register("seating_capacity", {
+              required: "Seating capacity is required",
+              min: { value: 1, message: "Minimum 1 person required" },
+              max: { value: 20, message: "Maximum 20 people allowed" },
+            })}
+            aria-invalid={errors.seating_capacity ? "true" : "false"}
+            placeholder="How many people?"
+            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+              errors.seating_capacity
+                ? "border-red-500"
+                : "border-white/30"
+            } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
+          />
+          {errors.seating_capacity && (
+            <span className="text-sm text-red-500">
+              {errors.seating_capacity.message}
+            </span>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full h-8 sm:h-[37px] cursor-pointer text-white text-sm bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
+        >
+          {loading ? "Booking..." : "Find a Table"}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
   );
