@@ -11,13 +11,13 @@ export const signup = async (req: Request, res: Response):Promise<any> => {
 
     // Input validation
     if (!username || !email || !password) {
-      return res.status(400).json({ error: "All fields are required" });
+      return res.status(400).json({success:false, error: "All fields are required" });
     }
 
     // Check if user exists
     const userExists = await prisma.user.findUnique({ where: { email } });
     if (userExists) {
-      return res.status(409).json({ error: "User already exists" });
+      return res.status(409).json({success:false, error: "User already exists" });
     }
 
     // Hash password
@@ -32,14 +32,14 @@ export const signup = async (req: Request, res: Response):Promise<any> => {
       },
     });
     return res.status(201).json({
+      success:true,
       message: "User registered successfully",
       user:user,
-      success:true,
     });
 
   } catch (error) {
     console.error("Signup error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({success:false, error: error});
   }
 };
 
@@ -59,12 +59,12 @@ export const login = async (req: Request, res: Response):Promise<any> => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    // ✅ Fix: Include ALL required user data in the token
+
     const token = jwt.sign(
       {
-        id: user.id,       // Must match JwtPayload
-        email: user.email, // Now available in middleware
-        username: user.username // Optional
+        id: user.id,       
+        email: user.email, 
+        username: user.username 
       },
       process.env.JWT_SECRET as string,
       { expiresIn: "1h" }
@@ -89,28 +89,28 @@ export const login = async (req: Request, res: Response):Promise<any> => {
 
   } catch (error) {
     console.error("Login error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: error });
   }
 };
 
 export const logout = async (req: Request, res: Response):Promise<any> => {
   try {
     res.clearCookie("token");
-    return res.status(200).json({ message: "Logout successful" });
+    return res.status(200).json({success:true, message: "Logout successful" });
   } catch (error) {
     console.error("Logout error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({success:false, error: error});
   }
 };
 
-// src/controllers/authController.ts
+// @ get me
 
 export const getMe = async (req: Request, res: Response): Promise<any> => {
   try {
     const userId = req.user?.id;
 
     if (!userId) {
-      return res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({success:false, message: "Unauthorized" });
     }
 
     const user = await prisma.user.findUnique({
@@ -118,13 +118,13 @@ export const getMe = async (req: Request, res: Response): Promise<any> => {
     });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({success:false, message: "User not found" });
     }
 
-    return res.status(200).json({ user });
+    return res.status(200).json({success:true, user });
   } catch (error) {
     console.error("Error getting user:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: error });
   }
 };
 

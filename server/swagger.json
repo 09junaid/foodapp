@@ -309,12 +309,12 @@
                   "booking_date": {
                     "type": "string",
                     "format": "date",
-                    "example": "2025-05-08"
+                    "example": "2025-05-05T00:00:00.000Z"
                   },
                   "booking_time": {
                     "type": "string",
                     "format": "time",
-                    "example": "14:00"
+                    "example": "2025-05-05T04:00:00.000Z"
                   },
                   "seating_capacity": {
                     "type": "integer",
@@ -512,15 +512,36 @@
               "properties": {
                 "customer_name": {
                   "type": "string",
-                  "example": "Updated Name"
+                  "example": "Ali Khan"
+                },
+                "phone_number": {
+                  "type": "string",
+                  "example": "+923001234567"
                 },
                 "message": {
                   "type": "string",
-                  "example": "Update message"
+                  "example": "Please deliver fast"
+                },
+                "additional_note": {
+                  "type": "string",
+                  "example": "Be careful with the packaging"
                 },
                 "address": {
                   "type": "string",
-                  "example": "New Address"
+                  "example": "123 Street, Lahore"
+                },
+                "food_items": {
+                  "type":"string",
+                  "example": "Burger, Pizza, Salad"
+                },
+                "order_date": {
+                  "type": "string",
+                  "format": "date",
+                  "example": "2025-05-05T00:00:00.000Z"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 4
                 }
               }
             }

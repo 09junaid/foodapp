@@ -11,17 +11,17 @@ export const createBooking = async (req: Request, res: Response): Promise<any> =
 
     // Basic Validation
     if (!booking_date || !booking_time || !seating_capacity) {
-      return res.status(400).json({ message: "Missing required fields" });
+      return res.status(400).json({success:false, message: "Missing required fields" });
     }
 
     if (!user_id) {
-      return res.status(401).json({ error: "Unauthorized: No user logged in" });
+      return res.status(401).json({success: false, error: "Unauthorized: No user logged in" });
     }
 
     // Combine date and time into a valid DateTime object
     const bookingDateTime = new Date(`${booking_date}T${booking_time}`);
     if (isNaN(bookingDateTime.getTime())) {
-      return res.status(400).json({ message: "Invalid date or time format" });
+      return res.status(400).json({success: false, message: "Invalid date or time format" });
     }
 
     // Check for overlapping bookings
@@ -36,6 +36,7 @@ export const createBooking = async (req: Request, res: Response): Promise<any> =
 
     if (overlappingBooking) {
       return res.status(409).json({
+        success: false,
         message: "Booking slot already taken for this capacity",
       });
     }
@@ -60,6 +61,7 @@ export const createBooking = async (req: Request, res: Response): Promise<any> =
     });
 
     return res.status(201).json({
+      success: true,
       message: "Booking created successfully",
       booking,
     });
@@ -74,7 +76,7 @@ export const createBooking = async (req: Request, res: Response): Promise<any> =
       return res.status(401).json({ message: "Unauthorized: " + error.message });
     }
 
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: error });
   }
 };
 
@@ -94,7 +96,7 @@ export const getAllBookings = async (req: Request, res: Response): Promise<any> 
     res.status(200).json({ bookings });
   } catch (error) {
     console.error("Error fetching bookings:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ success: false, message: error });
   }
 };
 
@@ -110,13 +112,13 @@ export const getBookingById = async (req: Request, res: Response): Promise<any> 
     });
 
     if (!booking) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({success:false, message: "Booking not found" });
     }
 
-    res.status(200).json({ booking });
+    res.status(200).json({success:true, booking });
   } catch (error) {
     console.error("Error fetching booking:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message:error });
   }
 };
 
@@ -131,7 +133,7 @@ export const updateBooking = async (req: Request, res: Response): Promise<any> =
     });
 
     if (!booking) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({success:false, message: "Booking not found" });
     }
 
     // Check for overlapping bookings when updating
@@ -151,6 +153,7 @@ export const updateBooking = async (req: Request, res: Response): Promise<any> =
 
       if (overlappingBooking) {
         return res.status(409).json({ 
+          success:false,
           message: "Another booking already exists for this time and capacity" 
         });
       }
@@ -170,13 +173,14 @@ export const updateBooking = async (req: Request, res: Response): Promise<any> =
     });
 
     res.status(200).json({ 
+      success:true,
       message: "Booking updated successfully", 
       booking: updated 
     });
 
   } catch (error) {
     console.error("Error updating booking:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: error });
   }
 };
 
@@ -190,16 +194,16 @@ export const deleteBooking = async (req: Request, res: Response): Promise<any> =
     });
 
     if (!booking) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({success:false, message: "Booking not found" });
     }
 
     await prisma.booking.delete({
       where: { id: parseInt(id) }
     });
 
-    res.status(200).json({ message: "Booking deleted successfully" });
+    res.status(200).json({success:true, message: "Booking deleted successfully" });
   } catch (error) {
     console.error("Error deleting booking:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message:error });
   }
 };

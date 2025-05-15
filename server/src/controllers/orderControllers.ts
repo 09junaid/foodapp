@@ -13,11 +13,11 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
 
     // Basic validation
     if (!customer_name || !phone_number || !food_items || !address || !message || !quantity || !order_date) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({success:false, error: "Missing required fields" });
     }
 
     if (!user_id) {
-      return res.status(401).json({ error: "Unauthorized: No user logged in" });
+      return res.status(401).json({success:false, error: "Unauthorized: No user logged in" });
     }
 
     const order = await prisma.order.create({
@@ -28,7 +28,7 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
         food_items,
         address,
         additional_note,
-        order_date: new Date(order_date), // Use the provided order_date from the request
+        order_date: new Date(order_date),
         quantity,
         message
       },
@@ -43,6 +43,7 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
     });
 
     return res.status(201).json({
+      success:true,
       message: "Order created successfully",
       order
     });
@@ -52,10 +53,10 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
     
     // Specific error handling for different types of errors (e.g., database issues)
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      return res.status(400).json({ message: "Database error: " + error.message });
+      return res.status(400).json({success:false, message: "Database error: " + error.message });
     }
 
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: "Internal server error" });
   }
 };
 
@@ -70,7 +71,7 @@ export const getAllOrders = async (req: Request, res: Response): Promise<any> =>
         order_date: 'desc'
       }
     });
-    return res.status(200).json(orders);
+    return res.status(200).json({success:true,orders});
   } catch (error) {
     console.error("Error fetching orders:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -88,12 +89,12 @@ export const getOrderById = async (req: Request, res: Response): Promise<any> =>
       }
     });
     if (!order) {
-      return res.status(404).json({ message: "Order not found" });
+      return res.status(404).json({success:false, message: "Order not found" });
     }
-    return res.status(200).json(order);
+    return res.status(200).json({success:true,order});
   } catch (error) {
     console.error("Error fetching order:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message:error });
   }
 }
 
@@ -108,7 +109,7 @@ export const updateOrderById = async (req: Request, res: Response): Promise<any>
       where: { id: Number(id) }
     });
     if (!existingOrder) {
-      return res.status(404).json({ message: "Order not found" });
+      return res.status(404).json({success:false, message: "Order not found" });
     }
 
     const updatedOrder = await prisma.order.update({
@@ -129,6 +130,7 @@ export const updateOrderById = async (req: Request, res: Response): Promise<any>
     });
 
     return res.status(200).json({
+      success:true,
       message: "Order updated successfully",
       order: updatedOrder
     });
@@ -136,9 +138,9 @@ export const updateOrderById = async (req: Request, res: Response): Promise<any>
   } catch (error) {
     console.error("Error updating order:", error);
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      return res.status(400).json({ message: "Database error", error: error.message });
+      return res.status(400).json({success:false, message: "Database error", error: error.message });
     }
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: error });
   }
 }
 
@@ -150,12 +152,12 @@ export const deleteOrder = async (req: Request, res: Response): Promise<any> => 
       where: { id: Number(id) }
     })
     if (!deleteOrder) {
-      return res.status(404).json({ message: "Order not found" })
+      return res.status(404).json({success:false, message: "Order not found" })
     }
-    return res.status(200).json({ message: "Order deleted successfully" })
+    return res.status(200).json({success:true, message: "Order deleted successfully" })
     
   } catch (error) {
     console.error("Error Deleting order:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({success:false, message: error });
   }
 }
