@@ -86,7 +86,7 @@ export default function LoginPage() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row justify-evenly items-center gap-10 lg:gap-16 mt-32 lg:mt-48 px-2">
         {/* Text Section */}
-        <div className="text-center lg:text-left max-w-md px-4">
+        <div className="text-left lg:text-left max-w-md px-4">
           <h1 className="font-bold text-[#001e42] mb-4 text-3xl sm:text-4xl md:text-5xl">
             Sign In to My <span className="text-[#8EC63F]">Application</span>
           </h1>
