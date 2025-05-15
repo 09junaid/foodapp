@@ -114,8 +114,8 @@ export default function HeroSection() {
         </div>
 
         {/* Right Side - Booking Form */}
-        <div className="w-full max-w-md sm:max-w-[260px] lg:max-w-xs xl:max-w-[260px] sm:px-0 mt-8 lg:mt-0">
-  <div className="bg-[#0000001A]/40 backdrop-blur-lg p-5 sm:p-6 rounded-[7.4px] sm:rounded-2xl border border-[#8EC63F]">
+        <div className="w-full max-w-md sm:max-w-[260px] lg:max-w-xs xl:max-w-[300px] sm:px-0 mt-8 lg:mt-0">
+  <div className="bg-[#0000001A]/40  xl:h-[370px] backdrop-blur-lg p-5 sm:p-6 rounded-[7.4px] sm:rounded-2xl border border-[#8EC63F]">
     <div className="flex flex-col lg:py-2 justify-center gap-4 sm:gap-6">
       {/* Header Section */}
       <div className="flex justify-center items-center gap-4">
@@ -149,7 +149,7 @@ export default function HeroSection() {
               required: "Booking date is required",
             })}
             aria-invalid={errors.booking_date ? "true" : "false"}
-            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+            className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
               errors.booking_date ? "border-red-500" : "border-white/30"
             } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
           />
@@ -168,7 +168,7 @@ export default function HeroSection() {
               required: "Booking time is required",
             })}
             aria-invalid={errors.booking_time ? "true" : "false"}
-            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+            className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
               errors.booking_time ? "border-red-500" : "border-white/30"
             } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
           />
@@ -192,7 +192,7 @@ export default function HeroSection() {
             })}
             aria-invalid={errors.seating_capacity ? "true" : "false"}
             placeholder="How many people?"
-            className={`w-full h-8 sm:h-[37px] bg-white/10 text-white text-sm px-4 rounded-full border ${
+            className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
               errors.seating_capacity
                 ? "border-red-500"
                 : "border-white/30"
@@ -208,7 +208,7 @@ export default function HeroSection() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full h-8 sm:h-[37px] cursor-pointer text-white text-sm bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
+          className="w-full h-8 sm:h-[37px] xl:h-[45px] cursor-pointer text-white text-sm bg-[#8EC63F] hover:bg-[#7CB532] rounded-full font-bold transition duration-300"
         >
           {loading ? "Booking..." : "Find a Table"}
         </button>
