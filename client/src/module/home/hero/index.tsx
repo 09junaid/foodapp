@@ -150,7 +150,7 @@ export default function HeroSection() {
             })}
             aria-invalid={errors.booking_date ? "true" : "false"}
             className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
-              errors.booking_date ? "border-red-500" : "border-white/30"
+              errors.booking_date ? "border-red-500" : "border-white"
             } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
           />
           {errors.booking_date && (
@@ -169,7 +169,7 @@ export default function HeroSection() {
             })}
             aria-invalid={errors.booking_time ? "true" : "false"}
             className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
-              errors.booking_time ? "border-red-500" : "border-white/30"
+              errors.booking_time ? "border-red-500" : "border-white"
             } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
           />
           {errors.booking_time && (
@@ -195,7 +195,7 @@ export default function HeroSection() {
             className={`w-full h-8 sm:h-[37px] xl:h-[45px]  text-white text-sm px-4 rounded-full border ${
               errors.seating_capacity
                 ? "border-red-500"
-                : "border-white/30"
+                : "border-white"
             } focus:outline-none focus:ring-2 focus:ring-[#8EC63F] placeholder:text-white/70`}
           />
           {errors.seating_capacity && (
